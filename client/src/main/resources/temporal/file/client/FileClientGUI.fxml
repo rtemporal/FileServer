@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Priority?>
+
+<VBox xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="temporal.file.client.FileClientController"
+      stylesheets="@styles.css"
+      prefWidth="700" prefHeight="600">
+
+    <MenuBar>
+        <Menu text="Server">
+            <MenuItem fx:id="menuConnect" text="Connect" onAction="#onConnect"/>
+            <MenuItem fx:id="menuShutdown" text="Shutdown" onAction="#onShutdown"/>
+            <SeparatorMenuItem/>
+            <MenuItem fx:id="menuExit" text="Exit" onAction="#onExit"/>
+        </Menu>
+    </MenuBar>
+
+    <TabPane VBox.vgrow="ALWAYS">
+        <Tab text="Memory Store" closable="false">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <TitledPane text="Single File" expanded="true">
+                    <VBox spacing="8" style="-fx-padding: 8;">
+                        <HBox spacing="8">
+                            <TextField fx:id="memoryFileField" HBox.hgrow="ALWAYS" promptText="File path..."/>
+                            <Button text="Browse..." onAction="#onMemoryBrowseFile"/>
+                        </HBox>
+                        <HBox spacing="8">
+                            <Button fx:id="putBtn" text="Put" onAction="#onPut"/>
+                            <Button fx:id="getBtn" text="Get" onAction="#onGet"/>
+                            <Button fx:id="removeBtn" text="Remove" onAction="#onRemove"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+
+                <TitledPane text="Bulk (directory)" expanded="false">
+                    <VBox spacing="8" style="-fx-padding: 8;">
+                        <HBox spacing="8">
+                            <TextField fx:id="memoryDirField" HBox.hgrow="ALWAYS" promptText="Directory path..."/>
+                            <Button text="Browse..." onAction="#onMemoryBrowseDir"/>
+                        </HBox>
+                        <HBox spacing="8">
+                            <Button fx:id="putAllBtn" text="Put All" onAction="#onPutAll"/>
+                            <Button fx:id="getAllBtn" text="Get All" onAction="#onGetAll"/>
+                            <Button fx:id="removeAllBtn" text="Remove All" onAction="#onRemoveAll"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+            </VBox>
+        </Tab>
+
+        <Tab text="File Store" closable="false">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <TitledPane text="Single File" expanded="true">
+                    <VBox spacing="8" style="-fx-padding: 8;">
+                        <HBox spacing="8">
+                            <TextField fx:id="fileStoreFileField" HBox.hgrow="ALWAYS" promptText="File path..."/>
+                            <Button text="Browse..." onAction="#onFileStoreBrowseFile"/>
+                        </HBox>
+                        <HBox spacing="8">
+                            <Button fx:id="uploadBtn" text="Upload" onAction="#onUpload"/>
+                            <Button fx:id="downloadBtn" text="Download" onAction="#onDownload"/>
+                            <Button fx:id="deleteBtn" text="Delete" onAction="#onDelete"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+
+                <TitledPane text="Bulk (directory)" expanded="false">
+                    <VBox spacing="8" style="-fx-padding: 8;">
+                        <HBox spacing="8">
+                            <TextField fx:id="fileStoreDirField" HBox.hgrow="ALWAYS" promptText="Directory path..."/>
+                            <Button text="Browse..." onAction="#onFileStoreBrowseDir"/>
+                        </HBox>
+                        <HBox spacing="8">
+                            <Button fx:id="uploadAllBtn" text="Upload All" onAction="#onUploadAll"/>
+                            <Button fx:id="downloadAllBtn" text="Download All" onAction="#onDownloadAll"/>
+                            <Button fx:id="deleteAllBtn" text="Delete All" onAction="#onDeleteAll"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <TextArea fx:id="outputArea" editable="false" wrapText="true"
+              prefRowCount="10" VBox.vgrow="ALWAYS"/>
+
+    <HBox spacing="10" style="-fx-padding: 8;">
+        <Label text="Status:"/>
+        <Label fx:id="statusLabel" text="Disconnected"/>
+    </HBox>
+
+</VBox>
